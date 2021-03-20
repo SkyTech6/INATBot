@@ -1,0 +1,19 @@
+{
+  "name": "inat_bot",
+  "version": "1.0.0",
+  "description": "inat moderation bot",
+  "main": "app.js",
+  "dependencies": {
+    "get-urls": "^10.0.0",
+    "request": "^2.88.2",
+    "snoostorm": "^1.5.2",
+    "snoowrap": "^1.22.0"
+  },
+  "scripts": {
+    "start": "node app.js"
+  },
+  "devDependencies": {},
+  "author": "Sky Copeland",
+  "license": "MIT",
+  "type": "module"
+}
