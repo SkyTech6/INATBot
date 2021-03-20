@@ -14,7 +14,7 @@ const submissions = new SubmissionStream(client, {
 });
 submissions.on("item", submission => {
     console.log(submission.title);
-    var reply = "";
+    let reply = "";
 
     if (countWords(submission.selftext) < 250) {
         reply = response.wordLimit;
@@ -40,7 +40,7 @@ const comments = new CommentStream(client, {
     pollTime: 2000,
 });
 comments.on("item", comment => {
-    var reply = "";
+    let reply = "";
 
     if (checkWord("scope()", comment.selftext)) {
         reply = response.scope;
@@ -51,11 +51,11 @@ comments.on("item", comment => {
     }
 });
 
-function countWords(str) {
+const countWords = (str) => {
     return str.trim().split(/\s+/).length;
 }
 
-function checkWord(word, str) {
+const checkWord = (word, str) => {
     const allowedSeparator = '\\\s,;"\'|';
 
     const regex = new RegExp(
