@@ -1,10 +1,11 @@
 # INATBot
 The Automated Moderation Bot for the r/INAT Community.
 
-#TODO
+# TODO
 -Actually make this readme...
 
-#credentials.js
+# credentials.js
+
 export default
     {
         userAgent: "Bot Name",
