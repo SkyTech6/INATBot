@@ -18,7 +18,7 @@ const client = new Snoowrap({
 const submissions = new SubmissionStream(client, {
     subreddit: "inat",
     limit: 10,
-    pollTime: 2000,
+    pollTime: 20000,
 });
 submissions.on("item", submission => {
     if (notModerated(submission)) {
@@ -47,7 +47,7 @@ submissions.on("item", submission => {
 const comments = new CommentStream(client, {
     subreddit: "inat",
     limit: 10,
-    pollTime: 2000,
+    pollTime: 20000,
 });
 comments.on("item", comment => {
     let reply = "";
