@@ -2,7 +2,7 @@ import pkg from "snoostorm";
 const { CommentStream, SubmissionStream } = pkg;
 import Snoowrap from "snoowrap";
 import getUrls from "get-urls";
-import config from "./credentials.js";
+//import config from "./credentials.js"; // This is for local testing only
 import response from "./responses.js";
 
 const client = new Snoowrap({
