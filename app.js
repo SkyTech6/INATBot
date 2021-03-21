@@ -15,7 +15,7 @@ const client = new Snoowrap({
 
 const submissions = new SubmissionStream(client, {
     subreddit: "inat",
-    limit: 1,
+    limit: 10,
     pollTime: 2000,
 });
 submissions.on("item", submission => {
