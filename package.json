@@ -9,6 +9,9 @@
     "snoostorm": "^1.5.2",
     "snoowrap": "^1.22.0"
   },
+  "engines":{
+    "node":"12.x"
+  },
   "scripts": {
     "start": "node app.js"
   },
