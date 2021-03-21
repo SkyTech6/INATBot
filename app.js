@@ -5,7 +5,13 @@ import getUrls from "get-urls";
 import config from "./credentials.js";
 import response from "./responses.js";
 
-const client = new Snoowrap(config);
+const client = new Snoowrap({
+    userAgent: 'INAT_BOT 0.1',
+    clientId: process.env.CLIENT_ID,
+    clientSecret: process.env.CLIENT_SECRET,
+    username: process.env.REDDIT_USER,
+    password: process.env.REDDIT_PASS
+});
 
 const submissions = new SubmissionStream(client, {
     subreddit: "inat",
