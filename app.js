@@ -2,7 +2,7 @@ import pkg from "snoostorm";
 const { CommentStream, SubmissionStream } = pkg;
 import Snoowrap from "snoowrap";
 import getUrls from "get-urls";
-//import config from "./credentials.js"; // This is for local testing only
+// import config from "./credentials.js"; // This is for local testing only
 import response from "./responses.js";
 
 const client = new Snoowrap({
@@ -13,30 +13,34 @@ const client = new Snoowrap({
     password: process.env.REDDIT_PASS
 });
 
+// const client = new Snoowrap(config);
+
 const submissions = new SubmissionStream(client, {
     subreddit: "inat",
     limit: 10,
     pollTime: 2000,
 });
 submissions.on("item", submission => {
-    console.log(submission.title);
-    let reply = "";
+    if (notModerated(submission)) {
+        console.log(submission.title);
+        let reply = "";
 
-    if (countWords(submission.selftext) < 250) {
-        reply = response.wordLimit;
-        submission.remove();
-    }
+        if (countWords(submission.selftext) < 250) {
+            reply = response.wordLimit;
+            submission.remove();
+        }
 
-    if (getUrls(submission.selftext).size == 0) {
-        reply = reply + response.url;
-    }
+        if (getUrls(submission.selftext).size == 0) {
+            reply = reply + response.url;
+        }
 
-    if (checkWord("mmo", submission.selftext)) {
-        reply = reply + response.mmo;
-    }
+        if (checkWord("mmo", submission.selftext)) {
+            reply = reply + response.mmo;
+        }
 
-    if (reply != "") {
-        submission.reply(reply);
+        if (reply != "") {
+            submission.reply(reply);
+        }
     }
 });
 
@@ -72,4 +76,20 @@ const checkWord = (word, str) => {
     );
 
     return regex.test(str);
+}
+
+const notModerated = (submission) => {
+    if (submission.num_comments > 0) {
+        client.getSubmission(submission.id).expandReplies().then(thread => {
+            if (thread.comments.some(e => e['author']['name'] === "inat_bot")) {
+                return false;
+            }
+            else {
+                return true;
+            }
+        })
+    }
+    else {
+        return true;
+    }
 }
