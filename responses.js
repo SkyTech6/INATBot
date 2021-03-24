@@ -5,13 +5,16 @@ export default
             way anyone checking the post will know if they are able to help or are even interested in the project. 
             The mods of INAT are very busy with a large number of modmail, the fastest way to get your post live, 
             upon fixing the word count, will be to delete this post and try again. \n\n`,
+        offerLimit: `Your post does not contain the minimum 150 words required by the INAT rules. The primary focus of
+            INAT is on collaborative projects. However, we do allow people to post ads for their services as long as they are
+            a bit more descriptive than most other subs in what they can do. \n\n`,
         mmo: `I noticed you're posting a request for a Massively Multiplayer Online game project. Unfortunately, the 
             statistics are against you on completing that project due to a large number of reasons. Not only are 
             MMOs generally pretty expensive to develop with paid artists, programmers, etc... but they also take a 
             very long time to finish and release. Even trying to make a game like Dead Cells takes a LOT of 
             commitment from a very talented team (that was getting paid). It's far too likely that you will garner 
             a lot of attention from people new to the industry who dream of also making an MMO, but they will 
-            also likely abandon the project with months, or more likely weeks if not days. \n\n` + 
+            also likely abandon the project with months, or more likely weeks if not days. \n\n` +
             `Instead, I would recommend looking to make a very small scoped game, something you'd consider a like 
             a minigame. That way you and anyone who is willing to join the project can gain experience of what 
             it's like to finish a game from design to release. As well it'll give you a better idea of how long 
@@ -19,7 +22,7 @@ export default
             posts on INAT. \n\n`,
         url: `I noticed you don't have any URLs in your submission? If you've worked on any games in the past or 
             have a portfolio, posting a link to them would greatly increase your odds of successfully finding 
-            collaborators here on r/INAT. \n\n` + 
+            collaborators here on r/INAT. \n\n` +
             `If not, then I would highly recommend making anything even something super small that would show to 
             potential collaborators that you're serious about gamedev. It can be anything from a simple 
             brick-break game with bad art, sprite sheets of a small character, or 1 minute music loop. \n\n`,
