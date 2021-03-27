@@ -31,7 +31,7 @@ submissions.on("item", submission => {
         let reply = "";
 
         // Checks if the post is a offer post
-        if (countWords("offer", submission.link_flair_text)) {
+        if (checkWord("offer", submission.link_flair_text)) {
             // Offer posts require at least 150 words to be posted
             if (countWords(submission.selftext) < 150) {
                 reply = response.offerLimit;
