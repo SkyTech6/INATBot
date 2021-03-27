@@ -29,10 +29,20 @@ submissions.on("item", submission => {
         console.log(submission.title);
         let reply = "";
 
-        // If there are less than 250 words in the body, filter out
-        if (countWords(submission.selftext) < 250) {
-            reply = response.wordLimit;
-            submission.remove();
+        // Checks if the post is a offer post
+        if (checkWord("offer", submission.link_flair_text)) {
+            // Offer posts require at least 150 words to be posted
+            if (countWords(submission.selftext) < 150) {
+                reply = response.offerLimit;
+                submission.remove();
+            }
+        }
+        else {
+            // All other posts require at least 250 words to be posted
+            if (countWords(submission.selftext) < 250) {
+                reply = response.wordLimit;
+                submission.remove();
+            }
         }
 
         // Check if any urls exist in the submission
@@ -56,7 +66,7 @@ submissions.on("item", submission => {
 const comments = new CommentStream(client, {
     subreddit: "inat",
     limit: 10, // Same limit and pollTime on both means 60 requests a minute / Reddit's max
-    pollTime: 20000, 
+    pollTime: 20000,
 });
 comments.on("item", comment => {
     let reply = "";
