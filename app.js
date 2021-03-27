@@ -2,20 +2,21 @@ import pkg from "snoostorm";
 const { CommentStream, SubmissionStream } = pkg;
 import Snoowrap from "snoowrap";
 import getUrls from "get-urls";
-// import config from "./credentials.js"; // This is for local testing only
+import config from "./credentials.js"; // This is for local testing only
 import response from "./responses.js"; // Container for bot responses to users
+import wordCounter from "./uniqueoccurances.js";
 
 // Setup the Snoowrap client with variables passed from the Heroku env
-const client = new Snoowrap({
-    userAgent: 'INAT_BOT 0.1',
-    clientId: process.env.CLIENT_ID,
-    clientSecret: process.env.CLIENT_SECRET,
-    username: process.env.REDDIT_USER,
-    password: process.env.REDDIT_PASS
-});
+// const client = new Snoowrap({
+//     userAgent: 'INAT_BOT 0.1',
+//     clientId: process.env.CLIENT_ID,
+//     clientSecret: process.env.CLIENT_SECRET,
+//     username: process.env.REDDIT_USER,
+//     password: process.env.REDDIT_PASS
+// });
 
 // Credentials use for local debugging
-// const client = new Snoowrap(config);
+const client = new Snoowrap(config);
 
 // The submission stream from snoostorm 
 const submissions = new SubmissionStream(client, {
@@ -30,7 +31,7 @@ submissions.on("item", submission => {
         let reply = "";
 
         // Checks if the post is a offer post
-        if (checkWord("offer", submission.link_flair_text)) {
+        if (countWords("offer", submission.link_flair_text)) {
             // Offer posts require at least 150 words to be posted
             if (countWords(submission.selftext) < 150) {
                 reply = response.offerLimit;
@@ -58,6 +59,15 @@ submissions.on("item", submission => {
         // Check if any of the previous checks succeeded and added to the "reply" string
         if (reply != "") {
             submission.reply(reply);
+        }
+
+        // Checks for the percentage of unique word usage in the post
+        if (uniquePercentage(submission.selftext) < 40) {
+            client.composeMessage({
+                text: submission.url,
+                subject: "High Repetition Alert",
+                to: "r/INAT"
+            });
         }
     }
 });
@@ -102,6 +112,11 @@ const checkWord = (word, str) => {
 
 const includeWord = (word, str) => {
     return str.toLowerCase().includes(word);
+}
+
+const uniquePercentage = (str) => {
+    let occurance = wordCounter(str, false);
+    return (occurance.uniqueWordsCount * 100) / occurance.totalWords;
 }
 
 // Checks if the input submission already has a moderation post by the inat_bot
