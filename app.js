@@ -4,6 +4,7 @@ import Snoowrap from "snoowrap";
 import getUrls from "get-urls";
 // import config from "./credentials.js"; // This is for local testing only
 import response from "./responses.js"; // Container for bot responses to users
+import wordCounter from "./uniqueoccurances.js";
 
 // Setup the Snoowrap client with variables passed from the Heroku env
 const client = new Snoowrap({
@@ -59,6 +60,15 @@ submissions.on("item", submission => {
         if (reply != "") {
             submission.reply(reply);
         }
+
+        // Checks for the percentage of unique word usage in the post
+        if (uniquePercentage(submission.selftext) < 40) {
+            client.composeMessage({
+                text: submission.url,
+                subject: "High Repetition Alert",
+                to: "r/INAT"
+            });
+        }
     }
 });
 
@@ -102,6 +112,11 @@ const checkWord = (word, str) => {
 
 const includeWord = (word, str) => {
     return str.toLowerCase().includes(word);
+}
+
+const uniquePercentage = (str) => {
+    let occurance = wordCounter(str, false);
+    return (occurance.uniqueWordsCount * 100) / occurance.totalWords;
 }
 
 // Checks if the input submission already has a moderation post by the inat_bot
