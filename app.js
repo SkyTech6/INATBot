@@ -51,7 +51,7 @@ submissions.on("item", submission => {
         }
 
         // Check if the word mmo appears in the body
-        if (checkWord("mmo", submission.selftext)) {
+        if (includeWord("mmo", submission.selftext) || includeWord("mmo", submission.title)) {
             reply = reply + response.mmo;
         }
 
@@ -98,6 +98,10 @@ const checkWord = (word, str) => {
     );
 
     return regex.test(str);
+}
+
+const includeWord = (word, str) => {
+    return str.toLowerCase().includes(word);
 }
 
 // Checks if the input submission already has a moderation post by the inat_bot
