@@ -2,21 +2,21 @@ import pkg from "snoostorm";
 const { CommentStream, SubmissionStream } = pkg;
 import Snoowrap from "snoowrap";
 import getUrls from "get-urls";
-import config from "./credentials.js"; // This is for local testing only
+// import config from "./credentials.js"; // This is for local testing only
 import response from "./responses.js"; // Container for bot responses to users
 import wordCounter from "./uniqueoccurances.js";
 
 // Setup the Snoowrap client with variables passed from the Heroku env
-// const client = new Snoowrap({
-//     userAgent: 'INAT_BOT 0.1',
-//     clientId: process.env.CLIENT_ID,
-//     clientSecret: process.env.CLIENT_SECRET,
-//     username: process.env.REDDIT_USER,
-//     password: process.env.REDDIT_PASS
-// });
+const client = new Snoowrap({
+    userAgent: 'INAT_BOT 0.1',
+    clientId: process.env.CLIENT_ID,
+    clientSecret: process.env.CLIENT_SECRET,
+    username: process.env.REDDIT_USER,
+    password: process.env.REDDIT_PASS
+});
 
 // Credentials use for local debugging
-const client = new Snoowrap(config);
+// const client = new Snoowrap(config);
 
 // The submission stream from snoostorm 
 const submissions = new SubmissionStream(client, {
