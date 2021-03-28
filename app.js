@@ -31,7 +31,7 @@ submissions.on("item", submission => {
         let reply = "";
 
         // Checks if the post is a offer post
-        if (checkWord("offer", submission.link_flair_text)) {
+        if (includesWord("offer", submission.link_flair_text)) {
             // Offer posts require at least 150 words to be posted
             if (countWords(submission.selftext) < 150) {
                 reply = response.offerLimit;
@@ -52,7 +52,7 @@ submissions.on("item", submission => {
         }
 
         // Check if the word mmo appears in the body
-        if (includeWord("mmo", submission.selftext) || includeWord("mmo", submission.title)) {
+        if (includesWord("mmo", submission.selftext) || includesWord("mmo", submission.title)) {
             reply = reply + response.mmo;
         }
 
@@ -96,21 +96,8 @@ const countWords = (str) => {
     return str.trim().split(/\s+/).length;
 }
 
-// Regex function to see if a specified word appears in a string
-const checkWord = (word, str) => {
-    const allowedSeparator = '\\\s,;"\'|';
-
-    const regex = new RegExp(
-        `(^.*[${allowedSeparator}]${word}$)|(^${word}[${allowedSeparator}].*)|(^${word}$)|(^.*[${allowedSeparator}]${word}[${allowedSeparator}].*$)`,
-
-        // Case insensitive
-        'i',
-    );
-
-    return regex.test(str);
-}
-
-const includeWord = (word, str) => {
+// Substring check
+const includesWord = (word, str) => {
     return str.toLowerCase().includes(word);
 }
 
