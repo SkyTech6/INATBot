@@ -1,3 +1,4 @@
+[![CodeFactor](https://www.codefactor.io/repository/github/skytech6/inatbot/badge)](https://www.codefactor.io/repository/github/skytech6/inatbot)
 # INATBot
 The Automated Moderation Bot for the [r/INAT](https://www.reddit.com/r/INAT/hot/) Community.
 
