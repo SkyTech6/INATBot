@@ -5,8 +5,6 @@ import getUrls from "get-urls";
 import response from "./responses.js"; // Container for bot responses to users
 import wordCounter from "./uniqueoccurances.js";
 
-
-console.log(process.env.CLIENT_ID)
 // Setup the Snoowrap client with variables passed from the Heroku env
 const client = new Snoowrap({
     userAgent: 'INAT_BOT 0.2',
@@ -23,7 +21,7 @@ const submissions = new SubmissionStream(client, {
     pollTime: 20000, // does this check every 20 seconds, limited by Reddit's restrictions
 });
 submissions.on("item", submission => {
-    //Check if the submission has already been moderated
+    // Check if the submission has already been moderated
     if (notModerated(submission)) {
         console.log(submission.title);
         let reply = "";
