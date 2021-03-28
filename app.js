@@ -82,7 +82,7 @@ comments.on("item", comment => {
     let reply = "";
 
     // Check if the comment text contains the scope command
-    if (includesWord("scope();", comment.selftext)) {
+    if (includesWord("scope();", comment.body)) {
         reply = response.scope;
     }
 
