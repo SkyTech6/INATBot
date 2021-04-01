@@ -48,7 +48,7 @@ submissions.on("item", submission => {
         }
 
         // Check if the word mmo appears in the body
-        if (includesWord("mmo", submission.selftext) || includesWord("mmo", submission.title)) {
+        if (mmoCheck.test(submission.selftext.toLowerCase()) || mmoCheck.test(submission.title.toLowerCase())) {
             reply = reply + response.mmo;
         }
 
@@ -96,6 +96,11 @@ const countWords = (str) => {
 const includesWord = (word, str) => {
     return str.toLowerCase().includes(word);
 }
+
+// MMO Keyword check
+const mmoCheck = new RegExp(
+    ["mmo", "mmos", "mmorpg"].map(item => `\\b${item}\\b`).join("|")
+)
 
 const uniquePercentage = (str) => {
     let occurance = wordCounter(str, false);
