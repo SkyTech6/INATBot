@@ -30,14 +30,16 @@ submissions.on("item", submission => {
         if (includesWord("offer", submission.link_flair_text)) {
             // Offer posts require at least 150 words to be posted
             if (countWords(submission.selftext) < 150) {
-                reply = response.offerLimit;
+                reply = 'Word Count: ' + countWords(submission.selftext) + '\n\n';
+                reply = reply + response.offerLimit;
                 submission.remove();
             }
         }
         else {
             // All other posts require at least 250 words to be posted
             if (countWords(submission.selftext) < 250) {
-                reply = response.wordLimit;
+                reply = 'Word Count: ' + countWords(submission.selftext) + '\n\n';
+                reply =  reply + response.wordLimit;
                 submission.remove();
             }
         }
