@@ -30,28 +30,28 @@ submissions.on("item", submission => {
         if (includesWord("offer", submission.link_flair_text)) {
             // Offer posts require at least 150 words to be posted
             if (countWords(submission.selftext) < 150) {
-                reply = 'Word Count: ' + countWords(submission.selftext) + '\n\n';
-                reply = reply + response.offerLimit;
+                reply = 'Word Count: ${countWords(submission.selftext)} \n\n';;
+                reply += response.offerLimit;
                 submission.remove();
             }
         }
         else {
             // All other posts require at least 250 words to be posted
             if (countWords(submission.selftext) < 250) {
-                reply = 'Word Count: ' + countWords(submission.selftext) + '\n\n';
-                reply =  reply + response.wordLimit;
+                reply = 'Word Count: ${countWords(submission.selftext)} \n\n';
+                reply += response.wordLimit;
                 submission.remove();
             }
         }
 
         // Check if any urls exist in the submission
         if (getUrls(submission.selftext).size == 0) {
-            reply = reply + response.url;
+            reply += response.url;
         }
 
         // Check if the word mmo appears in the body
         if (mmoCheck.test(submission.selftext.toLowerCase()) || mmoCheck.test(submission.title.toLowerCase())) {
-            reply = reply + response.mmo;
+            reply += response.mmo;
         }
 
         // Check if any of the previous checks succeeded and added to the "reply" string
