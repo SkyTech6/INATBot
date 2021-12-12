@@ -34,5 +34,11 @@ export default
             the goal of a first-time collab is to form a relationship with your teammates and see if you would 
             work well together in a larger project. \n\n` +
             `Here's a video that could perhaps point you in the right direction: 
-            https://www.youtube.com/watch?v=UvCri1tqIxQ \n\n`
+            https://www.youtube.com/watch?v=UvCri1tqIxQ \n\n`,
+        nft: `We are sorry to inform you that r/INAT currently has a No-NFT/Crypto policy and as such this post has
+            been removed. In the current state of the indie gamedev community, this trend seems to attract a large
+            portion of users who think NFT are a get-rich-quick scheme without fully realizing the intense difficulty
+            of actually creating blockchain foundation games. Making games that aren't using blockchain is already a 
+            massive undertaking that statistically fails; we cannot in good judgement contribute to aspiring gamedevs 
+            being misled on their journey with a gimmick that ultimately doesn't have any established proof-of-concept. \n\n`
     }

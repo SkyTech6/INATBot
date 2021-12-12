@@ -26,11 +26,17 @@ submissions.on("item", submission => {
         console.log(submission.title);
         let reply = "";
 
+        if(nftCheck.text(submission.selftext.toLowerCase()) || nftCheck.text(submission.title.toLowerCase()))
+        {
+            reply += response.nft;
+            submission.remove();
+        }
+
         // Checks if the post is a offer post
         if (includesWord("offer", submission.link_flair_text)) {
             // Offer posts require at least 150 words to be posted
             if (countWords(submission.selftext) < 150) {
-                reply = 'Word Count: ${countWords(submission.selftext)} \n\n';;
+                reply += 'Word Count: ${countWords(submission.selftext)} \n\n';;
                 reply += response.offerLimit;
                 submission.remove();
             }
@@ -38,7 +44,7 @@ submissions.on("item", submission => {
         else {
             // All other posts require at least 250 words to be posted
             if (countWords(submission.selftext) < 250) {
-                reply = 'Word Count: ${countWords(submission.selftext)} \n\n';
+                reply += 'Word Count: ${countWords(submission.selftext)} \n\n';
                 reply += response.wordLimit;
                 submission.remove();
             }
@@ -102,6 +108,11 @@ const includesWord = (word, str) => {
 // MMO Keyword check
 const mmoCheck = new RegExp(
     ["mmo", "mmos", "mmorpg"].map(item => `\\b${item}\\b`).join("|")
+)
+
+// NFT Keyword check
+const nftCheck = new RegExp(
+    ["nft", "crypto", "cryptocurrency", "blockchain", "pay-to-earn", "pay to earn"].map(item => `\\b${item}\\b`).join("|")
 )
 
 const uniquePercentage = (str) => {
