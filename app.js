@@ -26,7 +26,7 @@ submissions.on("item", submission => {
         console.log(submission.title);
         let reply = "";
 
-        if(nftCheck.text(submission.selftext.toLowerCase()) || nftCheck.text(submission.title.toLowerCase()))
+        if(nftCheck.test(submission.selftext.toLowerCase()) || nftCheck.test(submission.title.toLowerCase()))
         {
             reply += response.nft;
             submission.remove();
