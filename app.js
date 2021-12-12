@@ -112,7 +112,7 @@ const mmoCheck = new RegExp(
 
 // NFT Keyword check
 const nftCheck = new RegExp(
-    ["nft", "crypto", "cryptocurrency", "blockchain", "pay-to-earn", "pay to earn"].map(item => `\\b${item}\\b`).join("|")
+    ["nft", "nfts", "crypto", "cryptocurrency", "blockchain", "pay-to-earn", "pay to earn"].map(item => `\\b${item}\\b`).join("|")
 )
 
 const uniquePercentage = (str) => {
