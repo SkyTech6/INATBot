@@ -4,7 +4,8 @@ export default
             to succeed on INAT when they describe both the project and what they are looking for in-depth. That 
             way anyone checking the post will know if they are able to help or are even interested in the project. 
             The mods of INAT are very busy with a large number of modmail, the fastest way to get your post live, 
-            upon fixing the word count, will be to delete this post and try again. \n\n`,
+            upon fixing the word count, will be to delete this post and try again. \n\n
+            Attempts to get around this automoderation of the rules will result in a BAN. \n\n`,
         offerLimit: `Your post does not contain the minimum 150 words required by the INAT rules. The primary focus of
             INAT is on collaborative projects. However, we do allow people to post ads for their services as long as they are
             a bit more descriptive than most other subs in what they can do. \n\n`,
